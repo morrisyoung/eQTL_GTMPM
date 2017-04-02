@@ -1,0 +1,8 @@
+# data/result folder
+data_simu_ml_realN/*
+plots/*
+result_ml_largeN/*
+result_ml_largeN_new/*
+result_ml_realN/*
+result_ml_realN_new/*
+

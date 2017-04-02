@@ -1,0 +1,5 @@
+# data/result folder
+data_simu_nn/*
+result_backup/*
+result_nn/*
+
