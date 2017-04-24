@@ -8,6 +8,7 @@ import timeit
 
 
 
+
 ## full GD for tensor predictive modeling
 
 ## iteratively optimizing
@@ -72,11 +73,13 @@ Y_test_spread = Y_test_spread - Y_cis_test_spread
 
 ##==================================================================================================================
 ## load model
-header = "./tm_data_real_init/"
-beta_snp_init = np.load(header + "beta_snp_init.npy")					## (num_of_snp+1) x (num_of_factor)
+#header = "./tm_data_real_init/"
+header = "../preprocess/tm_data_real_init/"
+beta_snp_init = np.load(header + "Beta.npy")						## (num_of_snp+1) x (num_of_factor)
 
-beta_gene_init = np.load(header + "beta_gene_init.npy")					## (num_of_gene) x (num_of_factor+1)
-beta_tissue_init = np.load(header + "beta_tissue_init.npy")				## (num_of_tissue) x (num_of_factor)
+beta_gene_init = np.load(header + "fm_gene.npy")					## (num_of_gene) x (num_of_factor+1)
+beta_tissue_init = np.load(header + "fm_tissue.npy")				## (num_of_tissue) x (num_of_factor)
+
 
 
 
@@ -183,7 +186,16 @@ with tf.device("/cpu:0"):
 	## real data:
 	#lr = tf.constant(0.00000000001, name='learning_rate')					## works
 	#lr = tf.constant(0.00000000005, name='learning_rate')					## good, but the testing set is not strictly decreasing
-	lr = tf.constant(0.00000000003, name='learning_rate')
+	
+#	lr = tf.constant(0.00000000003, name='learning_rate')
+
+
+
+
+	## tm:
+	lr = tf.constant(0.00000000000000005, name='learning_rate')					## good for: LassoR0.005, LassoR0.001
+
+
 
 
 
@@ -215,7 +227,7 @@ with tf.device("/cpu:0"):
 	#sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 	sess = tf.Session()
 	#sess.run(init)
-	sess.run(init, feed_dict={place_beta_snp: beta_snp, place_beta_gene: beta_gene, place_beta_tissue: beta_tissue})
+	sess.run(init, feed_dict={place_beta_snp: beta_snp_init, place_beta_gene: beta_gene_init, place_beta_tissue: beta_tissue_init})
 
 
 
@@ -225,7 +237,11 @@ with tf.device("/cpu:0"):
 
 	list_error_train = []
 	list_error_test = []
-	for i in xrange(1000):
+	#for i in xrange(1000):
+	#for i in xrange(67):				## the rounds needed to converge
+	for i in xrange(200):
+
+
 		print "iter#", i
 
 
@@ -268,12 +284,31 @@ with tf.device("/cpu:0"):
 
 
 
+
+
+
+
+		# ## save the learned para, for tissue and gene fm
+		# ########################################################
+		# ########################################################
+		# fm_tissue = beta_tissue.eval(session=sess)
+		# fm_gene = beta_gene.eval(session=sess)
+		# np.save("./result_model/fm_tissue", fm_tissue)
+		# np.save("./result_model/fm_gene", fm_gene)
+		# ########################################################
+		# ########################################################
+
+
+
+
+
+
+
+
+
 		##==== timer
 		elapsed = timeit.default_timer() - start_time
 		print "time spent this iter:", elapsed
-
-
-
 
 
 

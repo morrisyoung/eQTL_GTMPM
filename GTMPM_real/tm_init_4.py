@@ -22,6 +22,7 @@ from sklearn import linear_model
 
 
 
+
 if __name__ == "__main__":
 
 
@@ -68,9 +69,26 @@ if __name__ == "__main__":
 
 		#alpha = 0.001
 
-		alpha = 0.005
+		#alpha = 0.005
 
-		#alpha = 0.01
+
+
+		## lasso fine tune
+		#alpha = 0.006
+		#alpha = 0.007
+		#alpha = 0.008
+		#alpha = 0.009
+		alpha = 0.01
+
+
+
+
+
+
+
+
+
+
 		###################################
 
 		clf = linear_model.Lasso(alpha=alpha)			# TODO: parameter tunable

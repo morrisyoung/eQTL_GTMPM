@@ -14,7 +14,7 @@ import timeit
 
 ##==================================================================================================================
 ## load ddata
-header = "./data/"
+header = "./data_real/"
 #
 X_train = np.load(header + "X_train.npy")
 # add the intercept to X:
@@ -62,7 +62,8 @@ Y_test_spread = Y_test_spread - Y_cis_test_spread
 
 
 ##==================================================================================================================
-header = "./nn_data_real_init/"
+#header = "./nn_data_real_init/"
+header = "../preprocess/nn_data_real_init/"
 beta1_init = np.load(header + "beta1_init.npy")
 beta2_init = np.load(header + "beta2_init.npy")
 
@@ -183,7 +184,7 @@ with tf.device("/cpu:0"):
 
 	list_error_train = []
 	list_error_test = []
-	for i in xrange(1000):
+	for i in xrange(200):
 		print "iter#", i
 
 
@@ -220,6 +221,18 @@ with tf.device("/cpu:0"):
 		np.save(header + "list_error_test", list_error_test)
 
 
+
+
+
+
+
+	########################################################
+	result_beta1 = beta1.eval(session=sess)
+	result_beta2 = beta2.eval(session=sess)
+	np.save("./nn_result/result_beta1", result_beta1)
+	np.save("./nn_result/result_beta2", result_beta2)
+	print "beta1 and beta2 saving done..."
+	########################################################
 
 
 

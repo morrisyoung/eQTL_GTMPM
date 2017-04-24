@@ -66,9 +66,11 @@ Y_test_spread = Y_test_spread - Y_cis_test_spread
 
 ##==================================================================================================================
 ## load model
-header = "./ml_data_real_init/"
+#header = "./ml_data_real_init/"
+header = "../preprocess/ml_data_real_init/"
 beta1_init = np.load(header + "beta1_init.npy")
 beta2_init = np.load(header + "beta2_init.npy")
+
 
 
 
@@ -185,7 +187,9 @@ with tf.device("/cpu:0"):
 
 	list_error_train = []
 	list_error_test = []
-	for i in xrange(1000):
+	#for i in xrange(1000):
+	for i in xrange(200):
+
 		print "iter#", i
 
 
@@ -199,7 +203,7 @@ with tf.device("/cpu:0"):
 
 
 
-
+		########
 		sess.run(training_step1, feed_dict={x: X_train, y_index: Y_train_index, y: Y_train_spread[Y_train_index], f_intercept_shape: [len(X_train), 1]})
 		sess.run(training_step2, feed_dict={x: X_train, y_index: Y_train_index, y: Y_train_spread[Y_train_index], f_intercept_shape: [len(X_train), 1]})
 
@@ -220,6 +224,20 @@ with tf.device("/cpu:0"):
 		print "test error:", error
 		list_error_test.append(error)
 		np.save(header + "list_error_test", list_error_test)
+
+
+
+
+
+
+	########################################################
+	result_beta1 = beta1.eval(session=sess)
+	result_beta2 = beta2.eval(session=sess)
+	np.save("./ml_result/result_beta1", result_beta1)
+	np.save("./ml_result/result_beta2", result_beta2)
+	print "beta1 and beta2 saving done..."
+	########################################################
+
 
 
 

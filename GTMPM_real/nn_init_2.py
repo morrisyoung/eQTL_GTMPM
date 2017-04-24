@@ -14,6 +14,9 @@ from sklearn import linear_model
 
 
 
+
+
+
 if __name__ == "__main__":
 
 
@@ -30,7 +33,8 @@ if __name__ == "__main__":
 	#
 	X = np.load(header + "X.npy")
 	#
-	F = np.load("./nn_data_temp/m_factor.npy")
+	F = np.load("/ifs/scratch/c2b2/ip_lab/sy2515/GTEx_gtmpm/preprocess/nn_data_temp/m_factor.npy")
+
 
 
 	##==== fill dimension
@@ -43,11 +47,12 @@ if __name__ == "__main__":
 	print "D:", D
 
 
+
 	##
 	## for each factor: pick up candidate SNPs, do the LASSO
 	##
 	####========================================================================
-	m_indi_snp = np.load("./nn_data_temp/m_indi_snp.npy")
+	m_indi_snp = np.load("/ifs/scratch/c2b2/ip_lab/sy2515/GTEx_gtmpm/preprocess/nn_data_temp/m_indi_snp.npy")
 	beta = []
 	for d in range(D):
 		Data = np.multiply(X, m_indi_snp[d])			# X: (n_samples, n_features)
@@ -58,9 +63,22 @@ if __name__ == "__main__":
 		##############################
 		#alpha=0.1										## too strong (all 0 except the intercept)
 
+
 		#alpha=0.01										## the one under using
 		#alpha=0.005									## also tried
-		alpha=0.001										##
+		#alpha=0.001										##
+
+
+
+		## lasso fine tune
+		#alpha=0.02
+		#alpha=0.03
+		#alpha=0.04
+		#alpha=0.05
+		alpha=0.06
+
+
+
 
 
 

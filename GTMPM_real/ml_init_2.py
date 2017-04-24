@@ -14,6 +14,10 @@ from sklearn import linear_model
 
 
 
+
+
+
+
 if __name__ == "__main__":
 
 
@@ -25,12 +29,15 @@ if __name__ == "__main__":
 	##=====================================================================================================================
 	##==== load data
 	##=====================================================================================================================
-	header = "/ifs/scratch/c2b2/ip_lab/sy2515/GTEx_gtmnn/preprocess/data_train/"
+	#header = "/ifs/scratch/c2b2/ip_lab/sy2515/GTEx_gtmnn/preprocess/data_train/"
+	header = "./"
 
 	#
 	X = np.load(header + "X.npy")
 	#
-	F = np.load("/ifs/scratch/c2b2/ip_lab/sy2515/GTEx_gtmpm/preprocess/ml_data_temp/m_factor.npy")
+	#F = np.load("/ifs/scratch/c2b2/ip_lab/sy2515/GTEx_gtmpm/preprocess/ml_data_temp/m_factor.npy")
+	F = np.load("./ml_data_temp/m_factor.npy")
+
 
 
 	##==== fill dimension
@@ -47,7 +54,9 @@ if __name__ == "__main__":
 	## for each factor: pick up candidate SNPs, do the LASSO
 	##
 	####========================================================================
-	m_indi_snp = np.load("/ifs/scratch/c2b2/ip_lab/sy2515/GTEx_gtmpm/preprocess/ml_data_temp/m_indi_snp.npy")
+	#m_indi_snp = np.load("/ifs/scratch/c2b2/ip_lab/sy2515/GTEx_gtmpm/preprocess/ml_data_temp/m_indi_snp.npy")
+	m_indi_snp = np.load("./ml_data_temp/m_indi_snp.npy")
+
 	beta = []
 	for d in range(D):
 		Data = np.multiply(X, m_indi_snp[d])			# X: (n_samples, n_features)
@@ -59,7 +68,21 @@ if __name__ == "__main__":
 		#alpha=0.1										## this is used before, and this is good
 
 		#alpha=0.5
-		alpha=0.05
+		#alpha=0.05
+
+
+
+		## (Apr.6, 2017) fine tune the penalty strength
+		alpha=0.6
+		#alpha=0.7
+		#alpha=0.8
+		#alpha=0.9
+		#alpha=1.0
+
+
+
+
+
 
 
 		##############################
@@ -87,6 +110,8 @@ if __name__ == "__main__":
 	#
 	init_beta1 = init_beta1.T
 	np.save("./ml_data_real_init/beta1_init", init_beta1)
+
+
 
 
 
