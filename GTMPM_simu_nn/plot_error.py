@@ -46,6 +46,12 @@ if __name__=="__main__":
 	#
 	plt.plot(list_error_train[:threshold], 'r-', label="nn init train")
 	plt.plot(list_error_test[:threshold], 'r--', label="nn init test")
+	##
+	#plt.semilogx(list_error_train[:threshold], 'r-', label="nn init train", basex=2)
+	#plt.semilogx(list_error_test[:threshold], 'r--', label="nn init test", basex=2)
+
+
+
 
 
 
@@ -59,6 +65,11 @@ if __name__=="__main__":
 	#
 	plt.plot(list_error_train[:threshold], 'g-', label="nn rand train")
 	plt.plot(list_error_test[:threshold], 'g--', label="nn rand test")
+	##
+	#plt.semilogx(list_error_train[:threshold], 'g-', label="nn rand train", basex=2)
+	#plt.semilogx(list_error_test[:threshold], 'g--', label="nn rand test", basex=2)
+
+
 
 
 
@@ -73,6 +84,16 @@ if __name__=="__main__":
 	#
 	plt.plot(list_error_train[:threshold], 'b-', label="ml init train")
 	plt.plot(list_error_test[:threshold], 'b--', label="ml init test")
+	##
+	#plt.semilogx(list_error_train[:threshold], 'b-', label="ml init train", basex=2)
+	#plt.semilogx(list_error_test[:threshold], 'b--', label="ml init test", basex=2)
+
+
+
+
+
+
+
 
 
 
@@ -119,6 +140,9 @@ if __name__=="__main__":
 	#
 	plt.plot(list_error_train[:threshold], 'r-', label="nn init train")
 	plt.plot(list_error_test[:threshold], 'r--', label="nn init test")
+	##
+	#plt.semilogx(list_error_train[:threshold], 'r-', label="nn init train", basex=2)
+	#plt.semilogx(list_error_test[:threshold], 'r--', label="nn init test", basex=2)
 
 
 
@@ -134,6 +158,9 @@ if __name__=="__main__":
 	#
 	plt.plot(list_error_train[:threshold], 'g-', label="nn rand train")
 	plt.plot(list_error_test[:threshold], 'g--', label="nn rand test")
+	##
+	#plt.semilogx(list_error_train[:threshold], 'g-', label="nn rand train", basex=2)
+	#plt.semilogx(list_error_test[:threshold], 'g--', label="nn rand test", basex=2)
 
 
 
@@ -148,6 +175,19 @@ if __name__=="__main__":
 	#
 	plt.plot(list_error_train[:threshold], 'b-', label="ml init train")
 	plt.plot(list_error_test[:threshold], 'b--', label="ml init test")
+	##
+	#plt.semilogx(list_error_train[:threshold], 'b-', label="ml init train", basex=2)
+	#plt.semilogx(list_error_test[:threshold], 'b--', label="ml init test", basex=2)
+
+
+
+
+
+
+
+
+
+
 
 
 

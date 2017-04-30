@@ -158,6 +158,7 @@ if __name__=="__main__":
 
 
 
+
 	##
 	list_error_train = np.load("./result_ml_largeN_new/list_error_train_nninit.npy")
 	list_error_train = 1 - list_error_train / ve_train
@@ -166,7 +167,6 @@ if __name__=="__main__":
 	list_error_test = np.load("./result_ml_largeN_new/list_error_test_nninit.npy")
 	list_error_test = 1 - list_error_test / ve_test
 	plt.plot(list_error_test[:threshold], 'b--', label="nn init test")
-
 
 
 

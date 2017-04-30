@@ -139,6 +139,7 @@ if __name__ == "__main__":
 	##====================================================================================================================
 	## hierarchical clustering
 	##====================================================================================================================
+	"""
 	fm_loading = np.load("./result_model/fm_tissue.npy")
 	#threshold_factor = 50
 	#fm_loading = fm_loading[:, :threshold_factor]
@@ -200,6 +201,7 @@ if __name__ == "__main__":
 	plt.show()
 	#plt.savefig("/Users/shuoyang/Desktop/d" + str(d) + ".png")
 	#plt.close(fig)
+	"""
 
 
 
@@ -217,7 +219,6 @@ if __name__ == "__main__":
 	##====================================================================================================================
 	## MDS
 	##====================================================================================================================
-	"""
 	# X = np.load("./result_model/fm_tissue.npy")
 	# print X.shape
 	# n_components = 2
@@ -225,7 +226,6 @@ if __name__ == "__main__":
 	# Y = mds.fit_transform(X)
 	# print Y.shape
 	# np.save("./result_model/Y_MDS_28k", Y)
-
 
 
 	##
@@ -287,7 +287,44 @@ if __name__ == "__main__":
 		line = mlines.Line2D([], [], marker=marker, markersize = 10, color=color, label=tissue, linestyle = 'None')
 		list_handles.append(line)
 
-	plt.legend(handles=list_handles, ncol=1, loc = 2, fancybox=True, numpoints=1)
+	leg = plt.legend(handles=list_handles, ncol=1, loc = 2, fancybox=True, numpoints=1)
+
+
+
+
+	########
+	for k in range(len(leg.get_texts())):
+		text = leg.get_texts()[k]
+		if k < pos1:
+			color = color1
+			text.set_color(color)
+		elif k < pos2:
+			color = color2
+			text.set_color(color)
+		elif k < pos3:
+			color = color3
+			text.set_color(color)
+		elif k < pos4:
+			color = color4
+			text.set_color(color)
+		elif k < pos5:
+			color = color5
+			text.set_color(color)
+		elif k < pos6:
+			color = color6
+			text.set_color(color)
+		elif k < pos7:
+			color = color7
+			text.set_color(color)
+		else:
+			color = color8
+			text.set_color(color)
+	########
+
+
+
+
+
 	plt.xlabel('coordinate 1')
 	plt.ylabel('coordinate 2')
 	#plt.axis([-1000, 4000, -1000, 800])
@@ -296,7 +333,6 @@ if __name__ == "__main__":
 
 	plt.title('MDS for 28 tissue parameters')
 	plt.show()
-	"""
 
 
 

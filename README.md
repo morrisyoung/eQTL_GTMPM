@@ -7,5 +7,7 @@ All conditional on cis- (regressing out)
 
 Done with TensorFlow
 
-Model is renamed to **MI**xed-**L**ayer **A**nalysis of **G**enetics and **E**xpression (MILAGE)
+Model is renamed to **MI**xed-**L**ayer **A**nalysis of **G**enetics and **E**xpression (MILAGE); to update other dependency
+
+
 
